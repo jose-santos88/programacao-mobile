@@ -1,13 +1,10 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import LoginScreen from "./screens/LoginScreen";
-import ChatScreen from "./screens/ChatScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import TaskScreen from "./screens/TaskScreen";
 
 function App() {
   return (
     <SafeAreaProvider>
-      <SettingsScreen />
+      <TaskScreen />
     </SafeAreaProvider>
   );
 }
