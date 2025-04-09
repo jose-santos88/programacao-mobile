@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import {
   Appbar,
@@ -10,11 +10,12 @@ import {
   Divider,
   Text,
 } from "react-native-paper";
+import { TaskContext } from "../contexts/TaskContext";
 
 function TaskScreen() {
-  const [tarefas, setTarefas] = useState([]);
+  const { tarefas, adicionar, selecionar, concluir, remover } =
+    useContext(TaskContext);
   const [tarefa, setTarefa] = useState("");
-  const [refresh, setRefresh] = useState(false);
   const [exibeModal, setExibeModal] = useState(false);
   const [exibeAlerta, setExibeAlerta] = useState(false);
 
@@ -23,7 +24,7 @@ function TaskScreen() {
       <Appbar.Header>
         <Appbar.Content title="Minhas Tarefas" />
       </Appbar.Header>
-      {refresh && <></>}
+
       <FlatList
         data={tarefas}
         keyExtractor={(item) => item.id}
@@ -31,12 +32,10 @@ function TaskScreen() {
           <>
             <List.Item
               onLongPress={() => {
+                selecionar(item.id);
                 setExibeAlerta(true);
               }}
-              onPress={() => {
-                item.concluida = !item.concluida;
-                setRefresh(!refresh);
-              }}
+              onPress={() => concluir(item.id)}
               title={item.nome}
               right={(props) => (
                 <List.Icon
@@ -60,12 +59,7 @@ function TaskScreen() {
           />
           <Button
             onPress={() => {
-              if (tarefa) {
-                setTarefas([
-                  ...tarefas,
-                  { id: tarefas.length + 1, nome: tarefa, concluida: false },
-                ]);
-              }
+              adicionar(tarefa);
               setTarefa("");
               setExibeModal(false);
             }}
@@ -78,7 +72,14 @@ function TaskScreen() {
         <View style={styles.modal}>
           <Text variant="labelLarge">Deseja apagar a tarefa?</Text>
           <Button onPress={() => setExibeAlerta(false)}>Não</Button>
-          <Button onPress={() => setExibeAlerta(false)}>Sim</Button>
+          <Button
+            onPress={() => {
+              remover();
+              setExibeAlerta(false);
+            }}
+          >
+            Sim
+          </Button>
         </View>
       </Modal>
     </View>
