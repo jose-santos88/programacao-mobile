@@ -1,7 +1,9 @@
 import { View, Text, Button } from "react-native";
 
 function Perfil({ navigation, route }) {
-  const { id, usuario } = route.params;
+  const { id, usuario } = route.params
+    ? route.params
+    : { id: null, usuario: null };
   return (
     <View
       style={{
@@ -11,9 +13,11 @@ function Perfil({ navigation, route }) {
       }}
     >
       <Text>Perfil</Text>
-      <Text>
-        {id} - {usuario}
-      </Text>
+      {route.params && (
+        <Text>
+          {id} - {usuario}
+        </Text>
+      )}
       <Button title="Voltar p/ Home" onPress={() => navigation.goBack()} />
     </View>
   );
