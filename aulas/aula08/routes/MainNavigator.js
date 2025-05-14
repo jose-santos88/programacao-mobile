@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 function MainNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Recuperar Senha">
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Criar Conta" component={CriarConta} />
       <Stack.Screen name="Recuperar Senha" component={RecuperarSenha} />
