@@ -1,0 +1,19 @@
+{
+  "tarefas": [
+    {
+      "id": "1a2b",
+      "descricao": "Praticar programação",
+      "concluida": false
+    },
+    {
+      "id": "3c4d",
+      "descricao": "Estudar React Native",
+      "concluida": true
+    },
+    {
+      "id": "ddaf",
+      "descricao": "Partiu casa",
+      "concluida": false
+    }
+  ]
+}
