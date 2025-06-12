@@ -1,4 +1,3 @@
-
 import { createContext, useState } from "react";
 import * as AuthService from "../services/AuthService";
 
@@ -22,7 +21,7 @@ const AuthProvider = ({ children }) => {
     setUsuario({ login: null, logado: false });
   };
 
-  const registrar = async (email, senha) => {
+  const registrar = async ({ email, senha }) => {
     try {
       await AuthService.signUp({ email, password: senha });
       setUsuario({ login: email, logado: true });
